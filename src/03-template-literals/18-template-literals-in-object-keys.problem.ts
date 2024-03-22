@@ -6,6 +6,9 @@ type ObjectOfKeys = {
    [T in TemplateLiteralKey]: string
 };
 
+// Damn, Matt showed another method
+type Test2 = Record<TemplateLiteralKey, string>
+
 type tests = [
   Expect<
     Equal<
