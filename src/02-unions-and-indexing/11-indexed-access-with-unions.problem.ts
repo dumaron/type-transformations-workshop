@@ -9,7 +9,11 @@ export const programModeEnumMap = {
   PLANNED_SELF_DIRECTED: "plannedSelfDirected",
 } as const;
 
-export type IndividualProgram = unknown;
+type T = typeof programModeEnumMap
+export type IndividualProgram = T['ONE_ON_ONE' | 'SELF_DIRECTED' | 'PLANNED_ONE_ON_ONE' | 'PLANNED_SELF_DIRECTED'];
+
+// Matt also showed this. Very clever
+export type Test2 = T[Exclude<keyof T, 'GROUP' | 'ANNOUNCEMENT'>]
 
 type tests = [
   Expect<
@@ -17,5 +21,11 @@ type tests = [
       IndividualProgram,
       "1on1" | "selfDirected" | "planned1on1" | "plannedSelfDirected"
     >
+  >,
+  Expect<
+     Equal<
+        Test2,
+        "1on1" | "selfDirected" | "planned1on1" | "plannedSelfDirected"
+     >
   >,
 ];
