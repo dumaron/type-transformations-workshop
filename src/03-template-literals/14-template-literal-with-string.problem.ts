@@ -1,4 +1,5 @@
-type Route = unknown;
+type Route_ = '/' | '/users' | '/admin/users';
+type Route = `/${string}`
 
 export const goToRoute = (route: Route) => {};
 
